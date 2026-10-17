@@ -1,0 +1,25 @@
+// use prisma-8
+
+model MovieSession {
+  id         Int           @id @default(autoincrement())
+  movieTitle String
+  startAt    DateString
+  seats      SessionSeat[]
+}
+
+model Seat {
+  id       Int           @id @default(autoincrement())
+  row      Int
+  number   Int
+  sessions SessionSeat[]
+
+  @@unique([row, number])
+}
+model SessionSeat {
+  seatId       Int
+  sessionId    Int
+  movieSession MovieSession @relation(fields: [sessionId], references: [id])
+  seat         Seat         @relation(fields: [seatId], references: [id])
+
+  @@id([seatId, sessionId])
+}

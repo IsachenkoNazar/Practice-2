@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@prisma/orm-postgres": "8.0.0-rc.17",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/app.ts",
+    "contract:emit": "npx prisma contract emit",
+    "db:init": "prisma db init",
+    "db:update": "prisma db update",
+    "db:verify": "prisma db verify"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "prisma": "8.0.0-rc.22",
+    "tsx": "^4.23.15"
+  }
+}
