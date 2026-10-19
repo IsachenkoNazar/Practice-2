@@ -21,7 +21,7 @@ export function createMovieSessionHandler(service: MovieServiceContract): MovieH
     const session = await service.getMovieServiceById(id);
 
     if (!session) {
-      res.status(404).json({ message: `Session ${id} not found` });
+      res.status(404).json({ message: `Session id not found` });
       return;
     }
 
@@ -35,7 +35,7 @@ export function createMovieSessionHandler(service: MovieServiceContract): MovieH
       typeof movieTitle !== 'string' ||
       !movieTitle.trim() ||
       typeof startAt !== 'string' ||
-      !startAt.trim()
+      Number.isNaN(Date.parse(startAt))
     ) {
       res.status(422).json({ message: 'Invalid session data' });
       return;

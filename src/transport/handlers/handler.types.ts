@@ -39,21 +39,15 @@ export interface SeatHandler {
   
 
   createSeat(
-    req: Request<{ id:number }, SessionSeatResponse | ErrorResponse, CreateSeatRequest>,
-    res: Response<SessionSeatResponse | ErrorResponse>
-  ): Promise<void>;
+  req: Request<{}, SessionSeatResponse | ErrorResponse, CreateSeatRequest>,
+  res: Response<SessionSeatResponse | ErrorResponse>
+): Promise<void>;
 
+  isSeatBooked(
+    req:Request <{ id: number }, any, BookSearchRequest>,
+    res: Response <{isBooked: Boolean} | ErrorResponse>
+  ): Promise<void> ;
 
-    isSeatBooked(
-      req: Request<{ id: number }>,
-      res: Response<{ isBooked: boolean } | ErrorResponse>
-    ): Promise<void>;
-    
-    findBookedSeatIds(
-      req: Request<{ id: number}>,
-      res: Response<{ bookedIds: number[] } | ErrorResponse>
-    ): Promise<void>;
-    
     bookSeat(
       req: Request<{ id: number }, any, BookSearchRequest>,
       res: Response<{ message: string } | ErrorResponse>

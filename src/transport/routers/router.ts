@@ -9,12 +9,16 @@ export function createSessionRouter(handlerMovie: MovieHandler): Router {
   router.get('/session/:id', handlerMovie.findSessionById);
   router.post('/session', handlerMovie.createSession);
 
-
-//   router.get('/session/:id/seats', handler.getAllSeats);
-//   router.get('/session/:id/booked', handler.findBookedSeatIds);
-//   router.post('/session/:id/seats', handler.createSeat);
-
   return router;
 }
 
-// handler: SeatHandler,
+export function createSeatRouter(handler: SeatHandler): Router {
+  const router = Router();
+
+  router.get('/seat', handler.getAllSeats);
+  router.get('/seat/:id', handler.getSeatsById);
+  router.post('/seat', handler.createSeat);
+  router.post('/seat/book', handler.bookSeat);
+
+  return router;
+}

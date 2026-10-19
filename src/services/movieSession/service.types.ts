@@ -14,10 +14,15 @@ export interface MovieServiceContract{
     addNewMovieService: (product: MovieInput) => Promise<MovieSession | null>  
     
 }
-export interface SeatServiceContract{
-    getAllSeats(): Promise<Seat[]>
-    getSeatsById(id: number): Promise<Seat | null>
-    isSeatBooked(seatId: number, sessionId: number): Promise<Seat | null>
-    findBookedSeatIds(sessionId: number): Promise<number[]>
-    bookSeat(sessionId: number, seatId: number): Promise<void>
+
+
+export type seatInput = Omit<Seat, "id">
+
+export interface SeatServiceContract {
+    getAllSeats(): Promise<Seat[]>;
+    getSeatsById(id: number): Promise<Seat | null>;
+    createSeat(seat: seatInput): Promise<Seat | null>
+    isSeatBooked(seatId: number, sessionId: number): Promise<boolean>;
+    findBookedSeatIds(sessionId: number): Promise<number[]>;
+    bookSeat(sessionId: number, seatId: number): Promise<void>;
 }
